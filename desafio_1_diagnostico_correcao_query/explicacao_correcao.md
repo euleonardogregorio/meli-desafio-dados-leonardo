@@ -78,7 +78,7 @@ A lógica foi corrigida para semanas de **segunda a domingo**, evitando desalinh
 
 ---
 
-## 🧹 Correção 5 — Remoção de Condição Inútil
+## 🧹 Correção 5 — Limpeza da Query
 
 **Código Original**
 WHERE
@@ -107,7 +107,7 @@ GROUP BY SITE, FECHA, SKU, CATEGORIA, TIPO_ORDEN
 
 ---
 
-## 🧠 Correção 7 — Ranking Semanal
+## 🧠 Correção 7 — Ajuste Ranking Semanal
 
 **Código Original**
 WHERE week_rank_vendas = 2
@@ -146,7 +146,7 @@ Padronização do uso de `AS` em maiúsculas.
 
 ---
 
-## 📐 Correção 10 — Padronização de Alias
+## 📐 Correção 10 — Padronização de Sintaxe
 
 **Código Original**
 SUM(PIEZAS) PIEZAS
