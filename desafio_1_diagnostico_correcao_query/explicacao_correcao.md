@@ -1,134 +1,218 @@
------- Correção 1 - Sintaxe CTE ------
+# 🛠️ Documentação de Correções e Ajustes da Query
 
-Código Original:
+Este documento consolida todas as correções aplicadas à Query, incluindo ajustes de sintaxe, padronização, correções lógicas e melhorias de boas práticas.
+
+---
+
+## 🔧 Correção 1 — Estrutura de CTE
+
+**Código Original**
 DADOS_L10W AS (
-   WITH DADOS_HISTORICOS AS (
-     SELECT...
-
+WITH DADOS_HISTORICOS AS (
+SELECT...
 SELECT
-     SITE_ID...
+SITE_ID...
 
+markdown
+Copiar código
 
-Código Corrigido:
- DADOS_HISTORICOS AS (...),
- DADOS_L10W AS (...),
+**Código Corrigido**
+DADOS_HISTORICOS AS (...),
+DADOS_L10W AS (...),
 
+yaml
+Copiar código
 
-obs: A estrutura do CTE estava incorreta, desta forma podemos seguir com o CTE Historico e consumir sem erro.
+**Motivo**  
+A estrutura do `WITH` estava incorreta. Agora o CTE histórico é criado primeiro e utilizado corretamente no seguinte.
 
------- Correção 2 - Sintaxe CTE ------
-Código Original:
+---
+
+## 🔧 Correção 2 — Estrutura de CTE
+
+**Código Original**
 ANALISE_UFF AS (
-    WITH
- DADOS_BASE_CUSTO AS (
+WITH
+DADOS_BASE_CUSTO AS (
 SELECT (...),
 
 SELECT
-   WAREHOUSE_IDS.WAREHOUSE_ID...
+WAREHOUSE_IDS.WAREHOUSE_ID...
 
-Código Corrigido:
+markdown
+Copiar código
+
+**Código Corrigido**
 DADOS_BASE_CUSTO AS (...),
 ANALISE_UFF AS (...),
 
-obs: A estrutura do CTE estava incorreta, desta forma podemos seguir com o DADOS_BASE_CUSTO e consumir sem erro no CTE ANALISE_UFF.
+yaml
+Copiar código
 
+**Motivo**  
+O `WITH` interno estava inválido. A ordem correta dos CTEs foi restabelecida.
 
------- Correção 3 - Sintaxe CTE ------
-Código Original:
- ANALISE_PERFORMANCE_VENDAS AS (
-   WITH
-   DADOS_VENDAS_WOW AS (...),
-   CALCULO_FINAL_VENDAS AS (...),
+---
 
-   SELECT
-     WAREHOUSE_ID...
+## 🔧 Correção 3 — Estrutura de CTE
 
-Código Corrigido:
-  DADOS_VENDAS_WOW AS (...),
-  CALCULO_FINAL_VENDAS AS (...),
-  ANALISE_PERFORMANCE_VENDAS AS (...)
-obs: 
+**Código Original**
+ANALISE_PERFORMANCE_VENDAS AS (
+WITH
+DADOS_VENDAS_WOW AS (...),
+CALCULO_FINAL_VENDAS AS (...),
 
------- Correção 4 - Limpeza da query ------
-Código Original:
-AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 2 WEEK) AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 DAY)
+SELECT
+WAREHOUSE_ID...
 
-FECHA BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 WEEK) AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 DAY)
+markdown
+Copiar código
 
+**Código Corrigido**
+DADOS_VENDAS_WOW AS (...),
+CALCULO_FINAL_VENDAS AS (...),
+ANALISE_PERFORMANCE_VENDAS AS (...),
 
-Código Corrigido:
-AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 2 WEEK) AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 1 DAY)
+yaml
+Copiar código
 
-FECHA BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 1 WEEK) AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 1 DAY)
+**Motivo**  
+Remoção do `WITH` duplicado e alinhamento na estrutura do CTE.
 
-obs: Alterar a logica para filtrar a semana de Segunda a Domingo e não de Domingo a Sábado.
+---
 
------- Correção 5 - Limpeza da query ------
-Código Original:
+## 🧹 Correção 4 — Intervalo Semanal
 
+**Código Original**
+AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 2 WEEK)
+AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 DAY)
+
+markdown
+Copiar código
+
+**Código Corrigido**
+AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 2 WEEK)
+AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 1 DAY)
+
+yaml
+Copiar código
+
+**Motivo**  
+A lógica foi corrigida para semanas de **segunda a domingo**, evitando desalinhamento de períodos.
+
+---
+
+## 🧹 Correção 5 — Remoção de Condição Inútil
+
+**Código Original**
 WHERE
 1=1
-AND FECHA BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 WEEK) 
+AND FECHA BETWEEN ...
 
-Código Corrigido:
+markdown
+Copiar código
 
+**Código Corrigido**
 WHERE
-AND FECHA BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 WEEK) 
+FECHA BETWEEN ...
 
-obs: o 1=1 não estava sendo utilizado.
+yaml
+Copiar código
 
+**Motivo**  
+`1=1` não estava sendo utilizado para concatenar filtros dinamicamente.
 
------- Correção 6 - Erro de Sintaxe ------
+---
 
-Código Original:
+## ❌ Correção 6 — GROUP BY inválido
+
+**Código Original**
 GROUP BY ALL
 
-Código Corrigido:
+markdown
+Copiar código
+
+**Código Corrigido**
 GROUP BY SITE, FECHA, SKU, CATEGORIA, TIPO_ORDEN
 
-obs: GROUP BY ALL não é permitido, é preciso listar explicitamente todas as colunas a serem agrupadas.
+yaml
+Copiar código
 
------- Correção 7 - Erro Lógico ------
+**Motivo**  
+`GROUP BY ALL` não é suportado. A listagem de colunas deve ser explícita.
 
-Código Original:
+---
+
+## 🧠 Correção 7 — Ranking Semanal
+
+**Código Original**
 WHERE week_rank_vendas = 2
 
-Código Corrigido:
+markdown
+Copiar código
+
+**Código Corrigido**
 WHERE week_rank_vendas = 1
 
-obs: Bloco 1 do CALCULO_FINAL_VENDAS está com ORDER BY SEMANA DESC, logo week_rank_vendas = 1 é a mais recente. Se eu seguir o CTE e e deixar week_rank_vendas = 2 vai desalinhar a analise.
+yaml
+Copiar código
 
+**Motivo**  
+O ranking está em ordem decrescente (`ORDER BY SEMANA DESC`). Portanto, `1` representa a semana mais recente.
 
------- Correção 8 - Erro de Sintaxe ------
+---
 
-Código Original:
-VENDAS.TOP_3_PERFORMANCE_VENDAS,
+## ❌ Correção 8 — Aspas incorretas
+
+**Código Original**
 "" AS INSIGHT
 
-Código Corrigido:
-VENDAS.TOP_3_PERFORMANCE_VENDAS,
+markdown
+Copiar código
 
- '' AS INSIGHT
+**Código Corrigido**
+'' AS INSIGHT
 
- obs: Aspas simples é utilziado para definir valores de string, já aspas duplas para identificar colunas com caracteres especiais, nomes de projetos...
+yaml
+Copiar código
 
+**Motivo**  
+Strings devem ser definidas com aspas simples.
 
------- Correção 9 - Padronizar Sitaxe ------
+---
 
-Código Original:
+## 📐 Correção 9 — Padronização de Sintaxe
+
+**Código Original**
 FROM meli-sbox.ICQACENTRAL.UFFDET as A
 
-Código Corrigido:
+markdown
+Copiar código
+
+**Código Corrigido**
 FROM meli-sbox.ICQACENTRAL.UFFDET AS A
 
-obs: Modificando AS para maiusculo,seguindo o padrão das tabelas.
+yaml
+Copiar código
 
------- Correção 10 - Padronizar Sitaxe ------
+**Motivo**  
+Padronização do uso de `AS` em maiúsculas.
 
-Código Original:
-SITE AS WAREHOUSE_ID,FECHA,SKU,CATEGORIA, TIPO_ORDEN, SUM(PIEZAS) PIEZAS
+---
 
-Código Corrigido:
-SITE AS WAREHOUSE_ID,FECHA,SKU,CATEGORIA, TIPO_ORDEN, SUM(PIEZAS) AS PIEZAS
+## 📐 Correção 10 — Padronização de Alias
 
-obs: Adicionando AS, para ficar no padrão de todo código.
+**Código Original**
+SUM(PIEZAS) PIEZAS
+
+markdown
+Copiar código
+
+**Código Corrigido**
+SUM(PIEZAS) AS PIEZAS
+
+markdown
+Copiar código
+
+**Motivo**  
+Uso consistente de `AS` em alias de colunas.
