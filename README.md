@@ -2,97 +2,70 @@
 
 Este repositório contém minha solução completa para o desafio de dados da área de ICQA, cobrindo:
 
-- Diagnóstico e correção de uma query SQL
-- Criação de tabela final no BigQuery com atualização semanal
-- Análise exploratória com IA (prompt + insights)
-- Dashboard semanal com automação de envio
+- Diagnóstico e correção de uma query SQL  
+- Criação de tabela final no BigQuery com atualização semanal  
+- Análise exploratória com IA (prompt + insights)  
+- Dashboard semanal com automação de envio  
 
 ---
 
-## Estrutura do repositório
+## 📂 Estrutura do repositório
 
-### `desafio_1_diagnostico_correcao_query/`
+### 🔎 [Desafio 1 – Diagnóstico e Correção de Query](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desafio_1_diagnostico_correcao_query)
 
-Entrega da primeira etapa do desafio.
+Nesta pasta você encontra:
 
-Aqui você encontra:
-
-- **Query original e query corrigida** em SQL  
-- **Documento explicando**:
-  - Pelo menos **3 erros ou más práticas** identificados na query original  
-  - Como a query corrigida passa a retornar **apenas colunas com dados válidos**  
-  - **Quais informações o resultado final apresenta** e **por que são relevantes** para o negócio
-- **Passo a passo / pseudocódigo** para:
-  - Salvar o resultado em **uma nova tabela** no BigQuery, no mesmo projeto/dataset  
-  - Configurar uma **scheduled query semanal** (atualização automática dos dados)
+- Query original e query corrigida  
+- Documento explicando:
+  - Três erros ou más práticas da query original  
+  - Como a query corrigida retorna apenas colunas válidas  
+  - Por que o resultado final é relevante
+- Pseudocódigo e instruções para:
+  - Criar tabela final no BigQuery  
+  - Programar atualização semanal via *scheduled queries*  
 
 ---
 
-### `desafio_2_analise_exploratoria/analise_ia/`
-
-Entrega da etapa de **análise exploratória com IA**.
+### 🤖 [Desafio 2 – Análise Exploratória com IA](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desafio_2_analise_exploratoria/analise_ia)
 
 Nesta pasta estão:
 
-- O **prompt** utilizado para a ferramenta de IA (ex.: ChatGPT / Claude), construído a partir do CSV com os resultados da query corrigida  
-- O **resultado resumido da IA**, com:
-  - Padrões e comportamentos incomuns  
+- O **prompt elaborado** para IA  
+- O **resultado resumido da IA**, incluindo:
+  - Padrões anormais  
   - Categorias com maior participação  
-  - Tendências semanais (ex.: semanas estáveis vs. picos)  
-  - Conexão das tendências com **numerador, processos críticos e possíveis causas operacionais**
+  - Tendências semanais  
+  - Relação entre numerador, processos críticos e insights acionáveis  
 
 ---
 
-### `desafio_3_dashboard_automacao/`
-
-Entrega da etapa de **dashboard e automação**.
+### 📊 [Desafio 3 – Dashboard e Automação](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desafio_3_dashboard_automacao)
 
 Aqui você encontra:
 
-- Arquivos e/ou **capturas de tela do dashboard**, mostrando:
-  - **Vendas totais**
-  - **Ticket médio**
-  - **Ranking de produtos**
-  - **Evolução semanal das vendas**
-  - Destaque para **produtos com baixo desempenho**
-- Um arquivo de documentação técnica descrevendo:
-  - A ferramenta utilizada (ex.: Looker Studio / Power BI)  
-  - Como o dashboard consome os dados da tabela final  
-  - O **fluxo de automação** proposto para envio automático toda segunda-feira às 9h, por e-mail ou chat  
-    - Exemplo: *Looker Studio + Google Sheets + App Script* ou fluxo equivalente  
-    - Lógica de agendamento (cron / scheduler) e envio do link e/ou snapshot do dashboard
+- Prints ou link do dashboard  
+- KPIs entregues: vendas totais, ticket médio, ranking, evolução semanal, baixa performance  
+- Documento técnico do fluxo de automação:
+  - Ferramenta usada (Looker Studio, Power BI etc.)  
+  - Como os dados são consumidos  
+  - Como ocorre o envio automático toda segunda-feira às 9h  
 
 ---
 
-### `desenho_solucao/`
+### 🧩 [Desenho da Solução (Arquitetura)](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desenho_solucao)
 
-Materiais visuais da solução end-to-end.
+Inclui:
 
-Nesta pasta estão:
-
-- O **desenho da arquitetura** da solução (pipeline de dados)  
-- Visão do fluxo desde:
-  - Fonte de dados / CSV inicial  
-  - Correção da query  
-  - Criação da tabela no BigQuery  
-  - Análise com IA  
-  - Dashboard  
-  - Automação semanal de atualização e envio
+- Fluxo completo da solução:  
+  CSV → Query corrigida → BigQuery → Análise IA → Dashboard → Automação  
+- Diagramas e visão end-to-end do pipeline  
 
 ---
 
-## Como a solução responde ao desafio
+## ✔ Como a solução atende ao desafio
 
-- **Diagnóstico e correção da query**  
-  - Identifico erros/más práticas, corrijo a query e documento o raciocínio.  
-
-- **Tabela final + agendamento semanal**  
-  - Mostro como criar a tabela no BigQuery e configurar a scheduled query para atualizar semanalmente.  
-
-- **Análise exploratória com IA**  
-  - Entrego o prompt elaborado e o resumo dos insights/recomendações da IA.  
-
-- **Dashboard + automação**  
-  - Disponibilizo o dashboard com os KPIs pedidos e descrevo o fluxo técnico de automação para envio semanal.
-
+- Identificação e correção da query  
+- Documentação técnica clara  
+- Prompt estruturado + insights da IA  
+- Dashboard funcional com automação semanal  
 
