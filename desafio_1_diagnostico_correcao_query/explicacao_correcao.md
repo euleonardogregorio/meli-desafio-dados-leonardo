@@ -13,15 +13,9 @@ SELECT...
 SELECT
 SITE_ID...
 
-markdown
-Copiar código
-
 **Código Corrigido**
 DADOS_HISTORICOS AS (...),
 DADOS_L10W AS (...),
-
-yaml
-Copiar código
 
 **Motivo**  
 A estrutura do `WITH` estava incorreta. Agora o CTE histórico é criado primeiro e utilizado corretamente no seguinte.
@@ -39,15 +33,9 @@ SELECT (...),
 SELECT
 WAREHOUSE_IDS.WAREHOUSE_ID...
 
-markdown
-Copiar código
-
 **Código Corrigido**
 DADOS_BASE_CUSTO AS (...),
 ANALISE_UFF AS (...),
-
-yaml
-Copiar código
 
 **Motivo**  
 O `WITH` interno estava inválido. A ordem correta dos CTEs foi restabelecida.
@@ -65,16 +53,10 @@ CALCULO_FINAL_VENDAS AS (...),
 SELECT
 WAREHOUSE_ID...
 
-markdown
-Copiar código
-
 **Código Corrigido**
 DADOS_VENDAS_WOW AS (...),
 CALCULO_FINAL_VENDAS AS (...),
 ANALISE_PERFORMANCE_VENDAS AS (...),
-
-yaml
-Copiar código
 
 **Motivo**  
 Remoção do `WITH` duplicado e alinhamento na estrutura do CTE.
@@ -87,15 +69,9 @@ Remoção do `WITH` duplicado e alinhamento na estrutura do CTE.
 AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 2 WEEK)
 AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(SUNDAY)), INTERVAL 1 DAY)
 
-markdown
-Copiar código
-
 **Código Corrigido**
 AND DATE_VALUE BETWEEN DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 2 WEEK)
 AND DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 1 DAY)
-
-yaml
-Copiar código
 
 **Motivo**  
 A lógica foi corrigida para semanas de **segunda a domingo**, evitando desalinhamento de períodos.
@@ -109,15 +85,9 @@ WHERE
 1=1
 AND FECHA BETWEEN ...
 
-markdown
-Copiar código
-
 **Código Corrigido**
 WHERE
 FECHA BETWEEN ...
-
-yaml
-Copiar código
 
 **Motivo**  
 `1=1` não estava sendo utilizado para concatenar filtros dinamicamente.
@@ -129,14 +99,8 @@ Copiar código
 **Código Original**
 GROUP BY ALL
 
-markdown
-Copiar código
-
 **Código Corrigido**
 GROUP BY SITE, FECHA, SKU, CATEGORIA, TIPO_ORDEN
-
-yaml
-Copiar código
 
 **Motivo**  
 `GROUP BY ALL` não é suportado. A listagem de colunas deve ser explícita.
@@ -148,14 +112,8 @@ Copiar código
 **Código Original**
 WHERE week_rank_vendas = 2
 
-markdown
-Copiar código
-
 **Código Corrigido**
 WHERE week_rank_vendas = 1
-
-yaml
-Copiar código
 
 **Motivo**  
 O ranking está em ordem decrescente (`ORDER BY SEMANA DESC`). Portanto, `1` representa a semana mais recente.
@@ -167,14 +125,8 @@ O ranking está em ordem decrescente (`ORDER BY SEMANA DESC`). Portanto, `1` rep
 **Código Original**
 "" AS INSIGHT
 
-markdown
-Copiar código
-
 **Código Corrigido**
 '' AS INSIGHT
-
-yaml
-Copiar código
 
 **Motivo**  
 Strings devem ser definidas com aspas simples.
@@ -186,14 +138,8 @@ Strings devem ser definidas com aspas simples.
 **Código Original**
 FROM meli-sbox.ICQACENTRAL.UFFDET as A
 
-markdown
-Copiar código
-
 **Código Corrigido**
 FROM meli-sbox.ICQACENTRAL.UFFDET AS A
-
-yaml
-Copiar código
 
 **Motivo**  
 Padronização do uso de `AS` em maiúsculas.
@@ -205,14 +151,18 @@ Padronização do uso de `AS` em maiúsculas.
 **Código Original**
 SUM(PIEZAS) PIEZAS
 
-markdown
-Copiar código
-
 **Código Corrigido**
 SUM(PIEZAS) AS PIEZAS
 
-markdown
-Copiar código
-
 **Motivo**  
 Uso consistente de `AS` em alias de colunas.
+
+# ✅ Conclusão
+
+As correções acima garantem:
+
+- Estrutura de CTEs funcional e padronizada  
+- Lógica temporal correta  
+- Sintaxe apropriada para BigQuery  
+- Padronização estética e semântica  
+- Redução de erros futuros  
