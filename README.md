@@ -41,7 +41,7 @@ Nesta pasta estão:
 
 ### 📊 [Desafio 3 – Dashboard e Automação](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desafio_3_dashboard_automacao)
 
-### [Dashboard LookerSudio](https://lookerstudio.google.com/reporting/885543ab-aa97-4163-b590-7b5b0c28e236)
+### [Dashboard LookerSudio - ICQA – Indicadores Semanais de Performance](https://lookerstudio.google.com/reporting/885543ab-aa97-4163-b590-7b5b0c28e236)
 
 Aqui você encontra:
 
