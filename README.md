@@ -41,6 +41,8 @@ Nesta pasta estão:
 
 ### 📊 [Desafio 3 – Dashboard e Automação](https://github.com/euleonardogregorio/meli-desafio-dados-leonardo/tree/main/desafio_3_dashboard_automacao)
 
+### [Dashboard LookerSudio](https://lookerstudio.google.com/reporting/885543ab-aa97-4163-b590-7b5b0c28e236)
+
 Aqui você encontra:
 
 - Prints ou link do dashboard  
@@ -57,15 +59,35 @@ Aqui você encontra:
 Inclui:
 
 - Fluxo completo da solução:  
-  CSV → Query corrigida → BigQuery → Análise IA → Dashboard → Automação  
-- Diagramas e visão end-to-end do pipeline  
+  CSV → Correção SQL → BigQuery → Scheduled Query → IA (ChatGPT/NotebookLM) → Python para explosão → Google Sheets → Looker Dashboard → Automação por e-mail
+- Diagramas do pipeline de dados  
+- Descrição das decisões técnicas  
+- Documentação end-to-end 
 
 ---
 
 ## ✔ Como a solução atende ao desafio
 
-- Identificação e correção da query  
-- Documentação técnica clara  
-- Prompt estruturado + insights da IA  
-- Dashboard funcional com automação semanal  
+- Correção detalhada da query original com documentação técnica  
+- Criação de tabela final no BigQuery com atualização semanal  
+- Análise exploratória com IA, usando prompting estruturado  
+- Dashboard completo no Looker Studio com:
+- KPIs  
+- gráficos semanais  
+- ranking de vendas  
+- avaliação de baixo desempenho  
+- filtro global por semana  
+- Automação total (query + envio do dashboard)
+
+---
+
+## 🛠 Tecnologias e Ferramentas Utilizadas
+
+- **BigQuery** (SQL, Scheduled Queries)
+- **Python** (Explosão e transformação dos dados)
+- **Google Sheets** (dataset consumido no Looker)
+- **Looker Studio** (dashboard + automação de envio)
+- **ChatGPT / NotebookLM** (Análise exploratória e documentação)
+- **GitHub** (versionamento e documentação do desafio)
+
 
