@@ -66,7 +66,7 @@ Este documento resume os principais achados identificados na análise explorató
 ## 🛠️ 5. Recomendações Finais
 
 ### ✔ Ação Imediata (1 semana)
-- Revisar processos operacionais do **BRSP01** (picking/packing).  
+- Revisar processos operacionais do **BRSP01**.  
   O aumento do denominador indica lentidão detectável.
 
 ### 🟧 Médio Prazo (2–4 semanas)
